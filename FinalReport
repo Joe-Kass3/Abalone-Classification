@@ -1,0 +1,32 @@
+
+* Intro *
+We are attempting to predict the age of the abalone based on the following physical attributes represented in this dataset: 
+
+Sex - M, F, and I (infant)
+Length - Longest shell measurement in mm
+Diameter - Perpendicular to length measurement in mm
+Height - Measured with meat in shell in mm
+Whole weight - Whole abalone measured in grams
+Shucked weight - Weight of the meat measured in grams
+Viscera weight - Gut weight (after bleeding), measured in grams
+Shell weight - After being dried, measured in grams
+Rings - Number of rings, +1.5 gives the age in years
+
+Currently, the age of the abalone can be measured by cutting the abalone through the cone and counting the number of rings within. The goal is to be able to skip this process, which is takes a lot of time, and instead use easier to aquire measurements (such as height, weight, length, etc.). 
+
+This data was originally owned by the Marine Resources Division of the Marine Research Laboratories in Taroona, Australia, a part of the Tasmanian Departemnt of Primary Industry and Fisheries. The donor of the database was Sam Waugh from the Department of Computer Science at University of Tasmania. We acquiered the dtaa from the University of California Irvine Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/Abalone). 
+
+
+* Methods *
+
+The data required no work before getting started. The data available in the UCI Machine Learning Repository had the missing values removed and the ranges of the continuous values have been scaled for use with an artifical neural network. This was done by dividing the values by 200 by the donor of the database. 
+
+
+
+
+
+* Results * 
+
+
+* Conclusions* 
+...
