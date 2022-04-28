@@ -156,14 +156,25 @@ def calc_class_probabilities(data, summaries, row):
 			probabilities[class_values] = prior_prob[class_values] * calculate_probability(row[i+1], mean, std)
 	print(probabilities)
 
+
 summaries = summarize_by_class(train_data)
 # print(summaries)
 calc_class_probabilities(train_data, summaries, train_data.iloc[0, :])
 
 
-print(train_data)
+def prediction(train_data, summaries, row):
+	probabilities = calc_class_probabilities(train_data, summaries, row)
+	# print(probabilities.items())
+	best_label, best_prob = None, -1
+	for class_value, probability in probabilities.items():
+		if best_label is None or probability > best_prob:
+			best_prob = probability
+			best_label = class_value
+	
+	return best_label
+
 
 for i in range(len(train_data)):
 	print(i) 
 	print(train_data.iloc[i, :])
-	print(calc_class_probabilities(train_data, summaries, train_data.iloc[i, :]))
+	print(prediction(train_data, summaries, train_data.iloc[i, :]))
