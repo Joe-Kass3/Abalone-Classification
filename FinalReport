@@ -21,8 +21,42 @@ This data was originally owned by the Marine Resources Division of the Marine Re
 
 The data required no work before getting started. The data available in the UCI Machine Learning Repository had the missing values removed and the ranges of the continuous values have been scaled for use with an artifical neural network. This was done by dividing the values by 200 by the donor of the database. 
 
+~ Naive Bayes Classifier~ 
 
+Our first classification method was a Naive Bayes classifier. We constructed our set of functions, creating a foundation to built our adjustments on. Our foundational NB code includes functions for separating out the training and the test data, splitting the data into three age categories, calculating prior likelihood of belonging to one of these three age categories, and calculating the mean and standard deviation for each of the 7 different features with which we were working.  
 
+It should be noted that this data does not include an age attribute, but instead a "Ring" attribute that correlates closely with age. We assumed that age is distributed normally and broke age categorization in three distinct groups: Young (<33%), Medium (33% < x < 66%), and Old (>66%). 
+
+Here are the two functions that work to split the dataset into categories. 
+
+    def cat_helper(self, rings, bound_1, bound_2):
+        """
+        Apply across dataframe to sort by age
+        """
+        if rings <= bound_1:
+            return 0
+        elif (bound_1 < rings <= bound_2):
+            return 1
+        elif (rings > bound_2):
+            return 2
+    
+    def age_to_category(self):
+        """
+        Returns
+        -------
+        None. Adds column to data with categorization for age
+        """
+        std = self.data['Rings'].std()
+        mean = self.data['Rings'].mean()
+        
+        bound_1 = norm.ppf(0.33, loc = mean, scale = std)
+        bound_2 = norm.ppf(0.66, loc = mean, scale = std)
+        
+        self.data['Category Age'] = self.data['Rings'].apply(lambda x: self.cat_helper(x, bound_1, bound_2))
+        
+This type of categorization was necessary to adaquetely implement our classifier. It may be noted that the ultimate goal is to predict not just a general category of age but a far narrower band of potential ages to match the accuracy of age prediction provided by the current method (counting the rings). That is something that could be further explored in future work. 
+
+We then worked with a Gaussian probability distrubtion to predict the age classification for the first round of testing. We started with using all 7 available features. 
 
 
 * Results * 
