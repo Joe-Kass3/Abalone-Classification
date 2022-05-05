@@ -5,13 +5,13 @@ Final Project by Katie Wolf and Joe Kass
 
 These files can be used by downloading the abalone data (available in the data folder) and downloading the three implementable .py files
 
-bayeslearning.py
+- bayeslearning.py
 
-featureselection.py
+- featureselection.py
 
-tree.py
+- tree.py
 
-- The data and the .py files should be in the same directory. 
+The data and the .py files should be in the same directory. 
 
 bayeslearning.py is our initial implementation. 
 
