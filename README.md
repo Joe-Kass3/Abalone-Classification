@@ -18,4 +18,3 @@ bayeslearning.py is our initial implementation.
 featureselection.py expands upon the initial implementation through the use of feature selection.
 
 tree.py is our implementation of the SciKitLearn decesion tree. 
-...
