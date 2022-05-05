@@ -8,6 +8,8 @@ import pandas as pd
 import numpy as np
 from scipy.stats import norm
 import math as math
+import time
+start = time.time()
 
 
 ### Importing data ###
@@ -300,14 +302,33 @@ model = summarize_by_class(train_data)
 
 gauss_right = 0
 gauss_wrong = 0
+f_right = 0
+f_wrong = 0
+m_right = 0
+m_wrong = 0
+i_right = 0
+i_wrong = 0
 for i in range(len(test_data)):
+	# print(test_data.iloc[i,:]["Sex"])
 	category = test_data.iloc[i, :]["Category Age"]
 	label = gauss_prediction(train_data, model, test_data.iloc[i, :])
 	if category != label:
 		gauss_wrong += 1
+		if test_data.iloc[i,:]["Sex"] == "F":
+			f_wrong += 1
+		elif test_data.iloc[i,:]["Sex"] == "M":
+			m_wrong += 1
+		elif test_data.iloc[i,:]["Sex"] == "I":
+			i_wrong +=1
 
 	elif category == label:
 		gauss_right += 1
+		if test_data.iloc[i,:]["Sex"] == "F":
+			f_right += 1
+		elif test_data.iloc[i,:]["Sex"] == "M":
+			m_right += 1
+		elif test_data.iloc[i,:]["Sex"] == "I":
+			i_right +=1
 
 gauss_total = len(test_data)
 gauss_perc_right = gauss_right/gauss_total
@@ -315,6 +336,9 @@ gauss_perc_wrong = gauss_wrong/gauss_total
 print("~Gaussian Probability Distribution Results~")
 print("Training Data Size: ", len(train_data))
 print("Test Data Size:", gauss_total, "\nRight:", gauss_perc_right, "\nWrong:", gauss_perc_wrong)
+print("Percent right - Female:", f_right/(f_right + f_wrong))
+print("Percent right - Male:", m_right/(m_right + m_wrong))
+print("Percent right - Infant:", i_right/(i_right + i_wrong))
 
 print("\n")
 
@@ -323,14 +347,32 @@ model = summarize_by_class(train_data)
 
 uniform_right = 0
 uniform_wrong = 0
+f_right = 0
+f_wrong = 0
+m_right = 0
+m_wrong = 0
+i_right = 0
+i_wrong = 0
 for i in range(len(test_data)):
 	category = test_data.iloc[i, :]["Category Age"]
 	label = uniform_prediction(train_data, model, test_data.iloc[i, :])
 	if category != label:
 		uniform_wrong += 1
+		if test_data.iloc[i,:]["Sex"] == "F":
+			f_wrong += 1
+		elif test_data.iloc[i,:]["Sex"] == "M":
+			m_wrong += 1
+		elif test_data.iloc[i,:]["Sex"] == "I":
+			i_wrong +=1
 
 	elif category == label:
 		uniform_right += 1
+		if test_data.iloc[i,:]["Sex"] == "F":
+			f_right += 1
+		elif test_data.iloc[i,:]["Sex"] == "M":
+			m_right += 1
+		elif test_data.iloc[i,:]["Sex"] == "I":
+			i_right +=1
 
 uniform_total = len(test_data)
 uniform_perc_right = uniform_right/uniform_total
@@ -338,6 +380,9 @@ uniform_perc_wrong = uniform_wrong/uniform_total
 print("~Uniform Probability Distribution Results~")
 print("Training Data Size: ", len(train_data))
 print("Test Data Size:", uniform_total, "\nRight:", uniform_perc_right, "\nWrong:", uniform_perc_wrong)
+print("Percent right - Female:", f_right/(f_right + f_wrong))
+print("Percent right - Male:", m_right/(m_right + m_wrong))
+print("Percent right - Infant:", i_right/(i_right + i_wrong))
 
 print("\n")
 
@@ -346,20 +391,41 @@ model = summarize_by_class(train_data)
 
 rayleigh_right = 0
 rayleigh_wrong = 0
+f_right = 0
+f_wrong = 0
+m_right = 0
+m_wrong = 0
+i_right = 0
+i_wrong = 0
 for i in range(len(test_data)):
 	category = test_data.iloc[i, :]["Category Age"]
 	label = rayleigh_prediction(train_data, model, test_data.iloc[i, :])
 	if category != label:
 		rayleigh_wrong += 1
+		if test_data.iloc[i,:]["Sex"] == "F":
+			f_wrong += 1
+		elif test_data.iloc[i,:]["Sex"] == "M":
+			m_wrong += 1
+		elif test_data.iloc[i,:]["Sex"] == "I":
+			i_wrong +=1
 
 	elif category == label:
 		rayleigh_right += 1
+		if test_data.iloc[i,:]["Sex"] == "F":
+			f_right += 1
+		elif test_data.iloc[i,:]["Sex"] == "M":
+			m_right += 1
+		elif test_data.iloc[i,:]["Sex"] == "I":
+			i_right +=1
 
 rayleigh_total = len(test_data)
 rayleigh_perc_right = rayleigh_right/rayleigh_total
 rayleigh_perc_wrong = rayleigh_wrong/rayleigh_total
 print("Training Data Size: ", len(train_data))
 print("Test Data Size:", rayleigh_total, "\nRight:", rayleigh_perc_right, "\nWrong:", rayleigh_perc_wrong)
+print("Percent right - Female:", f_right/(f_right + f_wrong))
+print("Percent right - Male:", m_right/(m_right + m_wrong))
+print("Percent right - Infant:", i_right/(i_right + i_wrong))
 
 print("\n")
 ## Printing out recommended Distribution)
@@ -373,4 +439,9 @@ elif recommended_num == rayleigh_perc_right:
 	print("Recommended Distribution: Rayleigh")
 else:
 	print("Sorry, something odd happened!")
-### Can we improve these results? ##
+
+
+end = time.time()
+print("Run time:", round(end-start, 3), "seconds")
+
+
