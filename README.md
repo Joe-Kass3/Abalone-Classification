@@ -3,7 +3,7 @@
 Final Project by Katie Wolf and Joe Kass
 
 
-These files can be used by downloading the abalone data (available in the data folder) and downloading the three implementable .py files
+These files can be used by downloading the abalone data (available in the data folder) and downloading the three implementable .py files:
 
 - bayeslearning.py
 
